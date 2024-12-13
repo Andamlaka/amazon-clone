@@ -47,21 +47,26 @@
    height: 100%;
    padding: 10px;
    font-weight: bold;
-   outline: 1pX solid white;
+   outline: 1px solid white;
    
  }
  .search input{
     width: 100%;
+    height: 100%;
     border: none;
  }
  .search select {
-    border: none;
+    /* border: none; */
+    color:black ;
+    border-right: 2px solid gray;
  }
+
  .search button{
    border: 1px solid white;
    width: 100%;
+   height: 100%;
    margin-right: -2px;
-   /* border:none; */
+    border:none; 
  }
  .search svg{
    padding:7px;

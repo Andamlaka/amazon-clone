@@ -1,13 +1,8 @@
 
 import './App.css';
-import Header from './components/header/Header.jsx';
-
+import Routing from './Router.jsx';
 function App() {
-  return (
-    <div >
-      <Header />
-    </div>
-  );
+  return <Routing/>
 }
 
 export default App;
