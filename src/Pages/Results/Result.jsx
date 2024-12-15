@@ -45,6 +45,7 @@ const Result = () => {
                 rating={product.rating}
                 price={product.price}
                 product={product}
+                renderAdd={true}
               />
             ))}
           </div>

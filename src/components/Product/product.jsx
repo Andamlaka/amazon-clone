@@ -33,6 +33,8 @@ const Product = () => {
                             rating={singleProduct.rating}
                             price={singleProduct.price}
                             description={singleProduct.description}
+                            renderAdd={true}
+
                         />
                     ))
                 }

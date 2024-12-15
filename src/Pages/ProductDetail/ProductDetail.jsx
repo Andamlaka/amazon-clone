@@ -35,6 +35,7 @@ const ProductDetail = () => {
             product={product}
             flex={true}
             renderDec={true}
+            renderAdd={true}
         />)}
        
 
