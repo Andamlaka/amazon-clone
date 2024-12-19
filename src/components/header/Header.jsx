@@ -6,11 +6,14 @@ import { BiCart } from 'react-icons/bi'
 import LowerHeader from './LowerHeader'
 import { Link } from 'react-router-dom'
 import { DataContext } from '../../components/DataProvider/DataProvider'
+import {auth} from '../../components/Utility/firebase'
 const Header = () => {
- 
-  const [{basket}, dispatch] = useContext(DataContext)
+  const [{user, basket }, dispatch] = useContext(DataContext)
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.quantity + amount
+  }, 0)
 
-console.log(basket.length)
+  console.log(basket.length)
   return (
     <section className={classes.fixed}>
       <section>
@@ -36,8 +39,9 @@ console.log(basket.length)
           {/* search section */}
           <div className={classes.search}>
             <select name="" id="">
-              <option  value="" selected>All</option>
-              
+              <option value="" selected>
+                All
+              </option>
             </select>
             <input type="text" name="" id="" placeholder="Search product" />
             <CiSearch size={45} />
@@ -46,7 +50,7 @@ console.log(basket.length)
           {/* other sections*/}
 
           <div className={classes.order_container}>
-            <Link  to="" className={classes.language}>
+            <Link to="" className={classes.language}>
               <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg/1200px-Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg.png"
                 alt=""
@@ -56,9 +60,25 @@ console.log(basket.length)
                 <option value="">EN</option>
               </select>
             </Link>
-            <Link to="/auth">
-              <p>Sign In</p>
-              <span>Account and Lists</span>
+            <Link to={!user && "/auth"}>
+              <div>
+                {
+                  user ? (
+                    <>
+                    <p>Hello, {user?.email?.split('@')[0]}</p>
+                    <span onClick={()=>auth.signOut()}>Sign Out</span>
+                    </>
+                    
+                  ) : (
+                    <>
+                     <p>Helo, sign in</p>
+                    <span>Account and Lists</span>
+                    </>
+                   
+                  )
+                }
+              </div>
+              
             </Link>
             <Link to="/orders">
               <p>returns</p>
@@ -66,13 +86,12 @@ console.log(basket.length)
             </Link>
             <Link to="/cart" className={classes.cart}>
               <BiCart size={35} />
-              <span>{basket.length}</span>
+              <span>{totalItem}</span>
             </Link>
           </div>
         </div>
       </section>
       <LowerHeader />
-      
     </section>
   )
 }

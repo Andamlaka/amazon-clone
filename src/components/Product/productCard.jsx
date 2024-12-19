@@ -17,7 +17,7 @@ const ProductCard = ({
   renderAdd
 }) => {
   const [state, dispatch] = useContext(DataContext)
-  console.log(state);
+  
 
   const addToCart = () => {
     dispatch({
@@ -40,7 +40,7 @@ const ProductCard = ({
       }`}
     >
       <Link to={`/products/${id}`}>
-        detail
+        
         <img src={image} alt={title} />
       </Link>
       <div>
